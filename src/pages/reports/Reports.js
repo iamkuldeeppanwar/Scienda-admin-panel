@@ -37,7 +37,7 @@ function Reports() {
         </div>
         <Row>
           <Col>
-            <Card className="mb-3">
+            <Card className="mb-3 card_shadow">
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -75,7 +75,7 @@ function Reports() {
               </CardBody>
             </Card>
 
-            <Card>
+            <Card className="card_shadow">
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -115,7 +115,7 @@ function Reports() {
           </Col>
 
           <Col>
-            <Card className="mb-3" style={{ height: "100%" }}>
+            <Card className="mb-3 card_shadow" style={{ height: "100%" }}>
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -157,7 +157,7 @@ function Reports() {
 
         <Row className="mt-3">
           <Col>
-            <Card className="mb-3">
+            <Card className="mb-3 card_shadow">
               <CardBody>
                 <Row>
                   <Col>
@@ -196,7 +196,7 @@ function Reports() {
           </Col>
 
           <Col>
-            <Card className="mb-3">
+            <Card className="mb-3 card_shadow">
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -246,7 +246,7 @@ function Reports() {
             >
               Payments Received:
             </div>
-            <Card className="mb-3 w-75">
+            <Card className="mb-3 w-75 card_shadow">
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -287,7 +287,7 @@ function Reports() {
           </Col>
 
           <Col>
-            <Card className="mb-3" style={{ height: "100%" }}>
+            <Card className="mb-3 card_shadow" style={{ height: "100%" }}>
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -300,9 +300,11 @@ function Reports() {
                       Module Wise Money Received
                     </div>
                   </Col>
+
                   <Col className="text-end">
                     <BsThreeDotsVertical className="mb-1" size={"0.9rem"} />{" "}
                   </Col>
+                  <hr />
                 </Row>
 
                 <Row>

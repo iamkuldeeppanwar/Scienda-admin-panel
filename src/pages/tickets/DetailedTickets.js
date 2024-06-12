@@ -91,7 +91,7 @@ export default function DetailedTickets() {
               <div className="fs-3">
                 <Form.Select
                   className="drop-option  fs-3 border-0"
-                  style={{ maxWidth: "200px" }}
+                  style={{ maxWidth: "200px", height: "50px" }}
                   onChange={(e) => setStatus(e.target.value)}
                 >
                   <option className="custom-drop" value="Closed">

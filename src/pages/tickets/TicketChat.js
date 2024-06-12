@@ -13,6 +13,7 @@ import { IoMdArrowBack } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 import {
+  imgAddr,
   useAcceptTicketMutation,
   useCloseTicketMutation,
   useGetSingleTicketMutation,
@@ -179,11 +180,14 @@ const TicketChat = () => {
             <div className="d-flex align-items-center gap-4">
               <img
                 className="chat_avtar"
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAMAAABC4vDmAAAARVBMVEVpw6P////S6+FlwqFgwJ7k8+1uxab1+/mo2sf6/fxYvprv+PWBy7Bzx6nh8uvY7ua64dKHzbSb1cCv3cvH59uQ0bl5yKxUHm6DAAAGkElEQVR4nNWc2ZakIAyGUVAUd63y/R91QMsqF5YQ1Hb+izlnuk9TX7GEJARIFC5eFEmS1LX8pyj4CQ2SoL8umjZ7d+VYpYRQSkhajWXXZ21T/AlUnsRDyYRgjCqan+R/mfp5OcRJfitUk3WpxCEWSbS0y5qboIpXz4Qd6AcmWP/yH0pfqKQfGYMALWJs7JMroYp2FKAu2nWYqFqv7vKAKoYKNmoaLFZlHlhgqCRzzGyHGMvAowiE4lnqNZO0WGkGtKwgqLwlwUgTFm1BpgsC1ZSnIE1YJcRyuaF4hllxJlEBGEMnVFyd1k2zWBqHQmVBS04ryrIgqPq82bQWK2s8VExP76ZZlFiH0AaVXdJNs6xDaIbKe3EdEyGiN5ssI1Q+XthPSmw0UpmgeHcxk5ruJotlgCrO2VccVMTgOeihivGiZbcVHfVUWihObmFSpkE7gjqo/BqTqRPrdLNdA3Ujk2ENaqD6G5kkVQ+Byi61mUeJo20/QMW39pMSO+yDe6j6biSlvc+whypvMgZr0dIOdaVjYNbeZdhC3T+hPlSxGYqnfzB4SrTiRqi/GTyl7QCuoZqbLdRaotFD5QErj6qMXkiygZa5FqrFDh4T6XtopYZ3JdCNtDoojmuM0ipL+Odr5nmSVcgQiHINFG6Ws7TduUT8hYupV3P9C5WkuJY0Xlo+oDorTQ5QmI6i9HVEUmowBu/XVQtUgWGqjLk5lJPPih3UgJkHlnxhgegrNmyhisofiVrzX4l/g6QqNlAIG/X9Xga9EE22Gyj/KXBwgg56+7c5rqFq/11POJOXtX9XiWQF1ft/KU0Qslfm3eontJmgitH3rwkzWKi1EC7jHMdPUIg5mbqZosh/Sc/fdYLyDz/pGwLl3+48fhMUYvECRk+OgP/6YQsUwuNk9vTuR5j113ygEHsxBZ1IJYitJpuh8s7/b1PQ6V3h7w5RlRsiOE+qgkEhdlTlVRFcBArsKf+Gp7iU4LyWy+bUtM8TXE4DtvowgaTa6AnGSm0DIrNQQRtTUAUmLoZZdMSylpaqkFDIYB1wGMxRAaA0nwQZGEP2GWTLrYTCBaFUmwDfdhQuNyFtOkF4rZOE8yQYsR0rSfeR4GajCvocXcVRIbcag4ggO9lxthlhXOwPVMkJwhVeqKxzHZ1Yki4xwWyaACo8k9zsCS7bMsuU35BMARndNCGY8PorQ40IDztzCoQirNPEpKEFOwmpw1LnVLzjjW3gcRdYsEPrUCiVGO6Gesl51lkZXBwjocKG74MlRDp23ZgKYK2lXaFz6idKTyuMSYJMwjWSJiHAeBJT54T1mjSeAdsMK3uti0HTbHjjS0DkNoPdkBntGx7luvgsrVUVdpviJr3akHGuC/sW3h7TSN8TxbjDYCnXBePkMbKqBd5vKSuXJsdUGU5Onrc7TNmmDphvk7ibM7Iob72n/OQO+zoZbNxtd82mgX3snPgWYk2Bg2eIxfqDY7D+Whofy3MophDLLxjVhcb5b1rqKlfkWvAZwikY9Qrb9W7dt97KUA8V+xzUMM8EBzUdx8QLlOH3CbxK7JPggKeCqDHWm9sQxrRHA/2IJRUETpody3d+Us4m68y/9/oQj/Si9dhKNZLaMmnQ8fikF4GJWO3CWnWFcBwhwXaOJRELNSSONGfvOEIqQIZhSVnDzKc5xvsod6VhQLGgqCP4MYj7zNEpDnEnv8cgkIMd4Xt1SSNAbmh1YOQ+WqOW1Q5WDuio39Ga2yU2m00fuR2S1SGkO5dUnXHr0m3X18e1UeIYbef9DaBc2+zmYNtVAuA+WofJsaK2JQCu0aanjJ4y+9aPWTxEUFkJID8Nk8Oh3JWV2PdLVwUJWPZqtn0BTsStUKDjIYDstYhsmSSgoi7Y2ToEyuYqHIu6rF7VOaZTyQalKX+zddV5PWVx3XSFgraDMGq8duMpm1OsLam02SpWvuITNJiRDMWn1qVBz5Glnwxluo8saH5m6bd0WP+qSD41F8k/8jrBMy9ePPOKShR8VIOBcl3meeS1p2deELt7sutikv/l0qF0MJ53PfOZF1mfeeX3mZejn3mN/JkX7iXVtVYU9TRBdPUjDpZMwB89d2GPJP+/h0GiRz6hEqm7Xmc/NlMFPzbzzGd5VGed5yOf9YBR9MynnqJHPoql9MDnw5R40ENrg0c2ye9JuteIuWfMLnySbhLq8T7Q3YMAqEc+czirhj4I6dtHIVDupzNFd/vTmYvUI6P9cx4ZXev051j/AX0ISuv4j9mpAAAAAElFTkSuQmCC"
+                src={ticket.from && imgAddr + ticket.from?.profile_url}
                 alt="..."
               />
               <div>
-                <div>{ticket.to && ticket.to?.name}</div>
+                <div>
+                  {ticket.from &&
+                    ticket.from?.first_name + " " + ticket.from?.last_name}
+                </div>
               </div>
             </div>
           </Col>
@@ -192,7 +196,6 @@ const TicketChat = () => {
               <div className="d-flex justify-content-between">
                 <div>
                   <div className="issue_raised_txt">Issue Raised :</div>
-                  <div>{ticket.subject && ticket.subject}</div>
                 </div>
                 {ticket.status && ticket.status !== "Closed" && (
                   <Button
@@ -219,6 +222,7 @@ const TicketChat = () => {
                     overflowY: "scroll",
                   }}
                 >
+                  <div>{ticket.subject && ticket.subject}</div>
                   {!isLoading ? (
                     ticket.description && ticket.description
                   ) : (
@@ -236,7 +240,15 @@ const TicketChat = () => {
               <div className="d-flex flex-wrap gap-2">
                 <div className="head_text">Change Status</div>
                 <select onChange={handleStatus} className="select_status">
-                  <option value="Closed">Close</option>
+                  <option
+                    style={{
+                      color: "#F95428",
+                    }}
+                    disabled
+                    value="Closed"
+                  >
+                    Pending
+                  </option>
                   <option value="Open">Open</option>
                 </select>
               </div>

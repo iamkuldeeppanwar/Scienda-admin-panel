@@ -537,7 +537,7 @@ table.table {
   width: 40px;
   height: 40px;
   border-radius: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .status_txt {
@@ -578,4 +578,12 @@ table.table {
   width: 25%;
   box-shadow: 0px 4px 4px 0px #bfbfbf40;
   border: 0.5px solid #e0eaff;
+}
+
+/* ============ report css ============= */
+.card_shadow {
+  border: 0.92px solid rgba(234, 236, 240, 1);
+  box-shadow: 0px 0.92px 1.85px 0px rgba(16, 24, 40, 0.06);
+  box-shadow: 0px 0.92px 2.77px 0px rgba(16, 24, 40, 0.1);
+  background: rgba(255, 255, 255, 1);
 }

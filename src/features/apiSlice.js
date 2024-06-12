@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const BASE_URL = "https://scienda-backend.adaptable.app/api";
+export const imgAddr = "https://creative-story.s3.amazonaws.com";
 
 export const apiSlice = createApi({
   reducerPath: "api",
@@ -327,6 +328,14 @@ export const apiSlice = createApi({
         method: "GET",
       }),
     }),
+
+    //--User apis----
+    getUsers: builder.mutation({
+      query: () => ({
+        url: `/admin/get-users`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -372,4 +381,5 @@ export const {
   useAcceptTicketMutation,
   useDeleteTicketMutation,
   useGetReportStaticsMutation,
+  useGetUsersMutation,
 } = apiSlice;
