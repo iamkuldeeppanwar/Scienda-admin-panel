@@ -331,8 +331,16 @@ export const apiSlice = createApi({
 
     //--User apis----
     getUsers: builder.mutation({
+      query: (query) => ({
+        url: `/admin/get-users?key=${query}`,
+        method: "GET",
+      }),
+    }),
+
+    //--Payment apis----
+    getPayments: builder.mutation({
       query: () => ({
-        url: `/admin/get-users`,
+        url: `/admin/get-payments`,
         method: "GET",
       }),
     }),
@@ -382,4 +390,5 @@ export const {
   useDeleteTicketMutation,
   useGetReportStaticsMutation,
   useGetUsersMutation,
+  useGetPaymentsMutation,
 } = apiSlice;

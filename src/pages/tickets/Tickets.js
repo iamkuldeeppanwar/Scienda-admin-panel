@@ -105,9 +105,9 @@ export default function Tickets() {
             show={showCancelModal}
             onHide={handleCloseCancelModal}
             title={`Are you sure you want to delete this ticket?`}
-            description={
-              "Lorem ipsum dolor sit amet consectetur. Suscipit nunc tincidunt iaculis sit feugiat platea. Aliquet amet cras amet mauris neque facilisi. Scelerisque interdum elit maecenas."
-            }
+            // description={
+            //   "Lorem ipsum dolor sit amet consectetur. Suscipit nunc tincidunt iaculis sit feugiat platea. Aliquet amet cras amet mauris neque facilisi. Scelerisque interdum elit maecenas."
+            // }
             src={"/icons/deleteIcon.png"}
             onDiscard={handleCloseCancelModal}
             onConfirm={handleDelete}

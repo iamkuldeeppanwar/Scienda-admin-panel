@@ -32,6 +32,8 @@ import AddEditQuestion from "./pages/questions/AddEditQuestion";
 import AddEditPage from "./pages/contentManagement/AddEditPage";
 import ViewSummary from "./pages/domains/ViewSummary";
 import TicketChat from "./pages/tickets/TicketChat";
+import ViewUserReport from "./pages/reports/ViewUserReport";
+import ViewModuleReport from "./pages/reports/ViewModuleReport";
 
 function App() {
   const { accessToken } = useSelector(selectAuth);
@@ -49,11 +51,14 @@ function App() {
 
   const routeList = [
     { path: "/admin/dashboard", comp: <Dashboard /> },
+
     { path: "/admin/users", comp: <Users /> },
     { path: "/admin/users/view-user", comp: <ViewUser /> },
+
     { path: "/admin/profs", comp: <Prof /> },
     { path: "/admin/profs/add-prof", comp: <AddEditProf /> },
     { path: "/admin/profs/edit-prof/:id", comp: <AddEditProf /> },
+
     { path: "/admin/domains", comp: <Domains /> },
     { path: "/admin/domains/add-specialty", comp: <AddEditDomain /> },
     { path: "/admin/domains/edit-specialty/:id", comp: <AddEditDomain /> },
@@ -66,6 +71,7 @@ function App() {
     { path: "/admin/domains/all-topics/:id", comp: <ListOfTopics /> },
     { path: "/admin/domains/all-subtopics/:id", comp: <ListOfSubtopics /> },
     { path: "/admin/domains/summary", comp: <ViewSummary /> },
+
     { path: "/admin/questions", comp: <Questions /> },
     { path: "/admin/questions/add-question", comp: <AddEditQuestion /> },
     { path: "/admin/questions/edit-question/:id", comp: <AddEditQuestion /> },
@@ -78,10 +84,15 @@ function App() {
     { path: "/admin/manage-plans", comp: <Plans /> },
     { path: "/admin/manage-plans/edit-domain", comp: <AddEditDomain /> },
     { path: "/admin/manage-plans/view", comp: <ViewAmountDetails /> },
+
     { path: "/admin/reports", comp: <Reports /> },
+    { path: "/admin/reports/users", comp: <ViewUserReport /> },
+    { path: "/admin/reports/module", comp: <ViewModuleReport /> },
+
     { path: "/admin/content-management", comp: <GetPages /> },
     { path: "/admin/content-management/add-page", comp: <AddEditPage /> },
     { path: "/admin/content-management/edit-page/:id", comp: <AddEditPage /> },
+
     { path: "/admin/tickets", comp: <Tickets /> },
     { path: "/admin/tickets/details", comp: <DetailedTickets /> },
     { path: "/admin/ticket/chat/:ticketId", comp: <TicketChat /> },

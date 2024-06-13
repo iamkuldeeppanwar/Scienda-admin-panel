@@ -4,10 +4,13 @@ import { Card, CardBody, Col, Container, Row, Spinner } from "react-bootstrap";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useGetReportStaticsMutation } from "../../features/apiSlice";
 import { getError } from "../../utils/error";
+import { GoArrowRight } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 
 function Reports() {
   const [getReportStatics, { isLoading }] = useGetReportStaticsMutation();
   const [statics, setStatics] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchStaticsData();
@@ -129,7 +132,17 @@ function Reports() {
                     </div>
                   </Col>
                   <Col className="text-end">
-                    <BsThreeDotsVertical className="mb-1" size={"0.9rem"} />{" "}
+                    <div
+                      style={{
+                        color: "#00008B",
+                        fontWeight: 600,
+                        fontSize: "14px",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => navigate("/admin/reports/users")}
+                    >
+                      View Reports <GoArrowRight size={18} />
+                    </div>
                   </Col>
                 </Row>
 
@@ -302,7 +315,17 @@ function Reports() {
                   </Col>
 
                   <Col className="text-end">
-                    <BsThreeDotsVertical className="mb-1" size={"0.9rem"} />{" "}
+                    <div
+                      style={{
+                        color: "#00008B",
+                        fontWeight: 600,
+                        fontSize: "14px",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => navigate("/admin/reports/module")}
+                    >
+                      View Reports <GoArrowRight size={18} />
+                    </div>
                   </Col>
                   <hr />
                 </Row>
@@ -316,7 +339,13 @@ function Reports() {
                           fontSize: "33px",
                         }}
                       >
-                        2240
+                        <ul>
+                          <li>
+                            {statics.areaWiseAmountReceived &&
+                              statics.areaWiseAmountReceived
+                                .MechanicalEngineering}
+                          </li>
+                        </ul>
                       </div>
                     ) : (
                       <Spinner size="sm" />
