@@ -33,7 +33,7 @@ export default function Payment() {
     "S.No",
     "User Name",
     "Email",
-    "Area of Speciality selected",
+    "Area of speciality",
     "Payment Received",
     "Prof. Name",
     "Actions",
@@ -45,11 +45,17 @@ export default function Payment() {
 
   const getAllPayments = async () => {
     try {
-      const { data } = await getPayments();
+      const { data } = await getPayments(query);
+      console.log(data);
       setPayments(data);
     } catch (error) {
       getError(error);
     }
+  };
+
+  const viewUserDataHandler = (user) => {
+    localStorage.setItem("profDetails", JSON.stringify(user));
+    navigate(`/admin/payment/view`);
   };
 
   return (
@@ -76,16 +82,14 @@ export default function Payment() {
                 <tr key={payment?._id} className="odd">
                   <td className="text-center">{skip + i + 1}</td>
                   <td>
-                    {payment?.user?.first_name + payment?.user?.last_name}
+                    {payment?.user?.first_name + " " + payment?.user?.last_name}
                   </td>
                   <td>{payment?.user?.email}</td>
                   <td>{payment?.subdomain?.sub_domain_name}</td>
                   <td className="text-center">£ {payment?.amount}</td>
                   <td>Prof</td>
                   <td className="text-center">
-                    <ViewButton
-                      onClick={() => navigate(`/admin/users/view-user`)}
-                    />
+                    <ViewButton onClick={() => viewUserDataHandler(payment)} />
                     <DeleteButton
                       onClick={() => {
                         //  deleteUser(user?._id)

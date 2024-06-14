@@ -339,8 +339,8 @@ export const apiSlice = createApi({
 
     //--Payment apis----
     getPayments: builder.mutation({
-      query: () => ({
-        url: `/admin/get-payments`,
+      query: (query) => ({
+        url: `/admin/get-payments?key=${query}`,
         method: "GET",
       }),
     }),

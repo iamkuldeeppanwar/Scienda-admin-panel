@@ -36,7 +36,7 @@ export default function Users() {
     "S.No",
     "Name",
     "Email",
-    "Selected Module Category",
+    "Area of speciality",
     "Subscription Plan",
     "Prof. Name",
     "Expiry Date",
@@ -98,7 +98,7 @@ export default function Users() {
                     {user?.first_name} {user?.last_name}
                   </td>
                   <td>{user?.email}</td>
-                  <td>{user?.domain?.domain_name}</td>
+                  <td>{user?.subdomain?.sub_domain_name}</td>
                   <td
                     style={{
                       color: "#213446",

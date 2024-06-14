@@ -4,16 +4,18 @@ import { FaPhoneVolume, FaRegEnvelope } from "react-icons/fa";
 import { MotionDiv } from "../../components";
 import { imgAddr } from "../../features/apiSlice";
 
-function ViewUser() {
+function ViewPayment() {
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("userDetails"));
+    const userData = JSON.parse(localStorage.getItem("profDetails"));
     setUser(userData);
   }, []);
 
   const professorName = localStorage.getItem("professorName");
   const professorEmail = localStorage.getItem("professorEmail");
+
+  //   console.log(user);
 
   return (
     <MotionDiv>
@@ -24,18 +26,21 @@ function ViewUser() {
       >
         <Col className="text-end">
           <Image
-            src={user.profile_url && imgAddr + user.profile_url}
+            src={user?.user?.profile_url && imgAddr + user.user.profile_url}
             style={{ aspectRatio: "1/1", height: "90px", borderRadius: "50%" }}
           />
           <br />
         </Col>
         <Col>
-          <h3>{user.first_name && user.first_name + user.last_name}</h3>
+          <h3>
+            {user?.user?.first_name &&
+              user.user.first_name + " " + user.user.last_name}
+          </h3>
           <p className="m-0">
-            <FaPhoneVolume /> +{user.mobile && user.mobile.slice(2)}
+            <FaPhoneVolume /> +{user?.user?.mobile && user.user.mobile.slice(2)}
           </p>
           <p>
-            <FaRegEnvelope /> {user.email && user.email}
+            <FaRegEnvelope /> {user?.user?.email && user.user.email}
           </p>
         </Col>
       </Row>
@@ -61,18 +66,15 @@ function ViewUser() {
         <Col lg={4}>
           <p>
             <span className="fw-bold">Plan Selected:</span> £
-            {user?.active_transactions && user.active_transactions[0]?.amount}
+            {user?.amount && user.amount}
           </p>
           <p>
             <span className="fw-bold">Plan Start Date:</span>{" "}
-            {user?.active_transactions &&
-              user?.active_transactions[0]?.createdAt.split("T")[0]}
+            {user?.createdAt && user.createdAt.split("T")[0]}
           </p>
           <p>
             <span className="fw-bold">Plan Validity:</span>{" "}
-            {user?.active_transactions &&
-              user?.active_transactions[0]?.validity}{" "}
-            days
+            {user?.validity && user.validity} days
           </p>
         </Col>
       </Row>
@@ -80,4 +82,4 @@ function ViewUser() {
   );
 }
 
-export default ViewUser;
+export default ViewPayment;

@@ -163,11 +163,11 @@ export default function Tickets() {
                   <td className="text-center">{skip + i + 1}</td>
                   {/* <td>{ticket?.ticketId}</td> */}
                   <td>
-                    {ticket?.from.first_name} {ticket?.from.last_name}
+                    {ticket?.from?.first_name} {ticket?.from?.last_name}
                   </td>
-                  <td>{ticket?.from.email}</td>
+                  <td>{ticket?.from?.email}</td>
                   <td>{ticket?.subject}</td>
-                  <td>{ticket?.subdomain.sub_domain_name}</td>
+                  <td>{ticket?.subdomain?.sub_domain_name}</td>
                   <td>{ticket?.to?.name}</td>
                   <td
                     style={{

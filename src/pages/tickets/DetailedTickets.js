@@ -58,7 +58,6 @@ export default function DetailedTickets() {
 
   const column = [
     "S.No",
-    // "ID",
     "Raised By",
     "Email",
     "Subject ",
@@ -68,8 +67,6 @@ export default function DetailedTickets() {
     "Actions",
   ];
 
-  // useTitle("Users");
-  // useTitle("User Details");
   return (
     <MotionDiv>
       {error ? (
@@ -114,9 +111,9 @@ export default function DetailedTickets() {
                   <td className="text-center">{skip + i + 1}</td>
                   {/* <td>{ticket?._id}</td> */}
                   <td>
-                    {ticket?.from.first_name} {ticket?.from.last_name}
+                    {ticket?.from?.first_name} {ticket?.from?.last_name}
                   </td>
-                  <td>{ticket?.from.email}</td>
+                  <td>{ticket?.from?.email}</td>
                   <td>{ticket?.subject}</td>
                   <td>{ticket?.subdomain?.sub_domain_name}</td>
                   <td>{ticket?.to?.name}</td>
@@ -124,7 +121,7 @@ export default function DetailedTickets() {
                   <td>
                     <ViewButton
                       onClick={() =>
-                        navigate(`/admin/ticket/chat/${ticket._id}`)
+                        navigate(`/admin/ticket/chat/${ticket?._id}`)
                       }
                     />
                   </td>

@@ -34,6 +34,7 @@ import ViewSummary from "./pages/domains/ViewSummary";
 import TicketChat from "./pages/tickets/TicketChat";
 import ViewUserReport from "./pages/reports/ViewUserReport";
 import ViewModuleReport from "./pages/reports/ViewModuleReport";
+import ViewPayment from "./pages/payment/ViewPayment";
 
 function App() {
   const { accessToken } = useSelector(selectAuth);
@@ -81,6 +82,8 @@ function App() {
     { path: "/admin/tests/edit-test/:id", comp: <CreateTest /> },
 
     { path: "/admin/payment", comp: <Payment /> },
+    { path: "/admin/payment/view", comp: <ViewPayment /> },
+
     { path: "/admin/manage-plans", comp: <Plans /> },
     { path: "/admin/manage-plans/edit-domain", comp: <AddEditDomain /> },
     { path: "/admin/manage-plans/view", comp: <ViewAmountDetails /> },
