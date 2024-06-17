@@ -1,118 +1,44 @@
-import React, {  useEffect,  useState } from "react";
-import { ToastContainer } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import { Col, Image, Row } from "react-bootstrap";
+import { FaPhoneVolume, FaRegEnvelope } from "react-icons/fa";
+import { imgAddr } from "../features/apiSlice";
+import { MotionDiv } from "../components";
 
-
-import { useTitle, ViewCard } from "../components";
-import EditProfileModel from "./UpdateProfile";
-import { Col, Row } from "react-bootstrap";
-import Skeleton from "react-loading-skeleton";
-import { useDispatch, useSelector } from "react-redux";
-import { hideLoading, showLoading } from "../features/loadingSlice";
-import { getError } from "../utils/error";
-import axiosInstance from "../utils/axiosUtil";
-
-
-
-const keyProps = {
-  "Email": "email", "Fullname": "fullname", "Mobile No.": "mobile", "Role": "role", "Created At": "createdAt", "Last Update": "updatedAt"
-};
-
-const Details = ({ title, loading, data, detailKey, fields }) => {
-  const keyList = Object.entries(fields);
-
-  // console.log({ loading, data, detailKey, fields })
-  return (
-    <>
-      <u><h4 className="mt-3">{title}</h4></u>
-      <Row>
-        {keyList && keyList.map(([k, attr]) => {
-          // console.log({ k, attr })
-          return (
-            <Col key={k} md={4}>
-              <p className="mb-0">
-                <strong>{k}</strong>
-              </p>
-              <p>{loading ? <Skeleton /> : data[detailKey][attr]}</p>
-            </Col>
-          )
-        })}
-      </Row>
-    </>
-  )
-};
-
-const ViewProfile = () => {
-  
-  const {token} = useSelector((state)=>state.user);
-  const {isLoading} = useSelector((state)=>state.loading);
-
-  const dispatch = useDispatch();
-  const [error,setError]= useState(null);
-  const [modalShow, setModalShow] = useState(false);
-  const [user,setUser] = useState("");
-  const [success,setSuccess] = useState(false);
-  
-  const getProfile = async()=>{
-
-    try {
-      dispatch(showLoading());
-      const response = await axiosInstance.get('/api/user/profile',{
-        headers:{
-          Authorization: token,
-        }
-      });
-      console.log(response);
-const {user,success}= response.data;
-       setUser(user)
-
-       setSuccess(success)
-
-      dispatch(hideLoading());
-      
-    } catch (error) {
-      dispatch(hideLoading());
-      setError(getError(error));
-    }
-  }
-
-  console.log({ error, user })
+function ViewProfile() {
+  const [user, setUser] = useState("");
 
   useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("user"));
+    setUser(userData);
+  }, []);
+  // console.log(user);
 
-    getProfile()
-    // setUser(user);
-  }, [token]);
-
-  useTitle("Profile Details");
   return (
-
-      
-       <ViewCard
-      title={"Profile Details"}
-      data={user}
-      setModalShow={setModalShow}
-      keyProps={keyProps}
-      
-      reducerProps={{ error, isLoading, success }}
-    >
-       {/* <Details
-        title="Address Details"
-        loading={isLoading}
-        data={user}
-        detailKey="addr"
-        fields={{ "Address": "address", "City": "city", "Postcode": "postcode" }}
-      />  */}
-      <EditProfileModel
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        reload={async () => { await getProfile() }}
-      />
-      {!modalShow && <ToastContainer />}
-    </ViewCard>
-   
-    
-    
+    <MotionDiv>
+      <h3 className="text-center my-3">Admin Profile</h3>
+      <Row
+        className="p-2"
+        style={{ backgroundColor: "rgba(238, 244, 255, 1)" }}
+      >
+        <Col className="text-end">
+          <Image
+            src={user.profile_url && imgAddr + user.profile_url}
+            style={{ aspectRatio: "1/1", height: "90px", borderRadius: "50%" }}
+          />
+          <br />
+        </Col>
+        <Col>
+          <h3>{user.name && user.name}</h3>
+          {/* <p className="m-0">
+            <FaPhoneVolume /> +{user.mobile && user.mobile.slice(2)}
+          </p> */}
+          <p>
+            <FaRegEnvelope /> {user.email && user.email}
+          </p>
+        </Col>
+      </Row>
+    </MotionDiv>
   );
-};
+}
 
 export default ViewProfile;

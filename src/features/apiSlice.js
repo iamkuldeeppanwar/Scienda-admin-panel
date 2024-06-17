@@ -337,6 +337,30 @@ export const apiSlice = createApi({
       }),
     }),
 
+    forgetPassword: builder.mutation({
+      query: (data) => ({
+        url: `/admin/get-otp`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    submitOTP: builder.mutation({
+      query: (data) => ({
+        url: `/admin/submit-otp`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    newPassword: builder.mutation({
+      query: (data) => ({
+        url: `/admin/reset-password`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+
     //--Payment apis----
     getPayments: builder.mutation({
       query: (query) => ({
@@ -391,4 +415,7 @@ export const {
   useGetReportStaticsMutation,
   useGetUsersMutation,
   useGetPaymentsMutation,
+  useForgetPasswordMutation,
+  useNewPasswordMutation,
+  useSubmitOTPMutation,
 } = apiSlice;

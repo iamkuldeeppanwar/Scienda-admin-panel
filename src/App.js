@@ -35,6 +35,8 @@ import TicketChat from "./pages/tickets/TicketChat";
 import ViewUserReport from "./pages/reports/ViewUserReport";
 import ViewModuleReport from "./pages/reports/ViewModuleReport";
 import ViewPayment from "./pages/payment/ViewPayment";
+import ViewProfile from "./pages/ViewProfile";
+import ForgetPassword from "./pages/ForgetPassword";
 
 function App() {
   const { accessToken } = useSelector(selectAuth);
@@ -52,6 +54,7 @@ function App() {
 
   const routeList = [
     { path: "/admin/dashboard", comp: <Dashboard /> },
+    { path: "admin/view-profile", comp: <ViewProfile /> },
 
     { path: "/admin/users", comp: <Users /> },
     { path: "/admin/users/view-user", comp: <ViewUser /> },
@@ -122,6 +125,15 @@ function App() {
             element={
               <UnprotectedRoute>
                 <AdminLoginScreen />
+              </UnprotectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/forget-password"
+            element={
+              <UnprotectedRoute>
+                <ForgetPassword />
               </UnprotectedRoute>
             }
           />

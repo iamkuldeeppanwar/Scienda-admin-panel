@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import {
   MessageBox,
-  useTitle,
   MotionDiv,
   CustomTable,
-  ViewButton,
   DeleteButton,
 } from "../../components";
-import { getError, toastOptions } from "../../utils/error";
-import { useDispatch, useSelector } from "react-redux";
-import { hideLoading, showLoading } from "../../features/loadingSlice";
-import axiosInstance from "../../utils/axiosUtil";
-import { Button, Col, Image, Modal, Row, Spinner } from "react-bootstrap";
+import { getError } from "../../utils/error";
+import { Button, Col, Image, Modal, Row } from "react-bootstrap";
 import CountCard from "../../components/layout/CountCard";
 import {
   AddButton,
   BlockButton,
   EditButton,
 } from "../../components/layout/CustomTable";
-import { selectAuth } from "../../features/authSlice";
 import {
   useAddProfBankDetailsMutation,
   useGetProfsMutation,
@@ -28,8 +22,6 @@ import {
 
 export default function Prof() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { accessToken } = useSelector(selectAuth);
   const [getProfs, { isLoading }] = useGetProfsMutation();
   const [addProfBankDetails, { isLoading: bankLoading }] =
     useAddProfBankDetailsMutation();
