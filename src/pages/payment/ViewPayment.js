@@ -24,7 +24,7 @@ function ViewPayment() {
         className="p-2"
         style={{ backgroundColor: "rgba(238, 244, 255, 1)" }}
       >
-        <Col className="text-end">
+        <Col md={5} className="text-end">
           <Image
             src={user?.user?.profile_url && imgAddr + user.user.profile_url}
             style={{ aspectRatio: "1/1", height: "90px", borderRadius: "50%" }}
@@ -46,33 +46,33 @@ function ViewPayment() {
       </Row>
       <Row className="justify-content-center my-3">
         <Col lg={4}>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Domain Selected:</span>{" "}
             {user.domain && user.domain?.domain_name}
           </p>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Prof Name:</span>{" "}
             {professorName && professorName}
           </p>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Prof Email:</span>{" "}
             {professorEmail && professorEmail}
           </p>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Area Of Speciality:</span>{" "}
             {user.subdomain && user.subdomain.sub_domain_name}
           </p>
         </Col>
         <Col lg={4}>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Plan Selected:</span> £
             {user?.amount && user.amount}
           </p>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Plan Start Date:</span>{" "}
             {user?.createdAt && user.createdAt.split("T")[0]}
           </p>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Plan Validity:</span>{" "}
             {user?.validity && user.validity} days
           </p>

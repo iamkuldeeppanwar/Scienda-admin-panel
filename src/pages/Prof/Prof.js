@@ -61,10 +61,10 @@ export default function Prof() {
   const handleAddBankDetails = async (id) => {
     try {
       const data = await addProfBankDetails({ id }).unwrap();
-      console.log(data);
+      // console.log(data);
 
-      window.location.href = data?.data?.accountLink?.url;
-      // console.log(data?.data?.accountLink?.url);
+      window.location.href = data?.loginlink?.url;
+      // console.log(data?.loginlink?.url);
     } catch (error) {
       getError(error);
     }

@@ -6,6 +6,7 @@ import { useGetReportStaticsMutation } from "../../features/apiSlice";
 import { getError } from "../../utils/error";
 import { GoArrowRight } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
+import { BarChart } from "@mui/x-charts";
 
 function Reports() {
   const [getReportStatics, { isLoading }] = useGetReportStaticsMutation();
@@ -25,7 +26,22 @@ function Reports() {
     }
   };
 
-  console.log(statics);
+  // console.log(statics);
+
+  const dataset = [
+    {
+      count: 1,
+      month: "Jan",
+    },
+    {
+      count: 2,
+      month: "Feb",
+    },
+    {
+      count: 3,
+      month: "Mar",
+    },
+  ];
 
   return (
     <MotionDiv>
@@ -52,9 +68,6 @@ function Reports() {
                     >
                       Total No. of Questions Prepared
                     </div>
-                  </Col>
-                  <Col className="text-end">
-                    <BsThreeDotsVertical className="mb-1" size={"0.9rem"} />{" "}
                   </Col>
                 </Row>
 
@@ -90,9 +103,6 @@ function Reports() {
                     >
                       Total No. of Exams Prepared
                     </div>
-                  </Col>
-                  <Col className="text-end">
-                    <BsThreeDotsVertical className="mb-1" size={"0.9rem"} />{" "}
                   </Col>
                 </Row>
 
@@ -130,6 +140,19 @@ function Reports() {
                     >
                       Total Users
                     </div>
+                    {!isLoading ? (
+                      <div
+                        style={{
+                          fontWeight: 600,
+                          fontSize: "33px",
+                        }}
+                      >
+                        {statics.totalNumberOfUsers &&
+                          statics.totalNumberOfUsers}
+                      </div>
+                    ) : (
+                      <Spinner size="sm" />
+                    )}
                   </Col>
                   <Col className="text-end">
                     <div
@@ -143,10 +166,20 @@ function Reports() {
                     >
                       View Reports <GoArrowRight size={18} />
                     </div>
+                    <BarChart
+                      sx={{ marginLeft: "-50px" }}
+                      dataset={dataset}
+                      xAxis={[{ scaleType: "band", dataKey: "month" }]}
+                      series={[{ dataKey: "count" }]}
+                      // xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+
+                      width={350}
+                      height={150}
+                    />
                   </Col>
                 </Row>
 
-                <Row>
+                {/* <Row>
                   <Col>
                     {!isLoading ? (
                       <div
@@ -162,7 +195,7 @@ function Reports() {
                       <Spinner size="sm" />
                     )}
                   </Col>
-                </Row>
+                </Row> */}
               </CardBody>
             </Card>
           </Col>

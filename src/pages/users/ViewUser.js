@@ -22,7 +22,7 @@ function ViewUser() {
         className="p-2"
         style={{ backgroundColor: "rgba(238, 244, 255, 1)" }}
       >
-        <Col className="text-end">
+        <Col md={5} className="text-end">
           <Image
             src={user.profile_url && imgAddr + user.profile_url}
             style={{ aspectRatio: "1/1", height: "90px", borderRadius: "50%" }}
@@ -39,36 +39,36 @@ function ViewUser() {
           </p>
         </Col>
       </Row>
-      <Row className="justify-content-center my-3">
+      <Row className="justify-content-center my-4">
         <Col lg={4}>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Domain Selected:</span>{" "}
             {user.domain && user.domain?.domain_name}
           </p>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Prof Name:</span>{" "}
             {professorName && professorName}
           </p>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Prof Email:</span>{" "}
             {professorEmail && professorEmail}
           </p>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Area Of Speciality:</span>{" "}
             {user.subdomain && user.subdomain.sub_domain_name}
           </p>
         </Col>
         <Col lg={4}>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Plan Selected:</span> £
             {user?.active_transactions && user.active_transactions[0]?.amount}
           </p>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Plan Start Date:</span>{" "}
             {user?.active_transactions &&
               user?.active_transactions[0]?.createdAt.split("T")[0]}
           </p>
-          <p>
+          <p className="my-3">
             <span className="fw-bold">Plan Validity:</span>{" "}
             {user?.active_transactions &&
               user?.active_transactions[0]?.validity}{" "}
