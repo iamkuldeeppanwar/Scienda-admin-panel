@@ -26,7 +26,7 @@ function Reports() {
     }
   };
 
-  // console.log(statics);
+  console.log(statics);
 
   const dataset = [
     {
@@ -374,9 +374,17 @@ function Reports() {
                       >
                         <ul>
                           <li>
-                            {statics.areaWiseAmountReceived &&
+                            {/* {statics.areaWiseAmountReceived &&
                               statics.areaWiseAmountReceived
-                                .MechanicalEngineering}
+                                .MechanicalEngineering} */}
+                            {statics.areaWiseAmountReceived &&
+                              Object.entries(
+                                statics.areaWiseAmountReceived
+                              ).map(([key, value]) => (
+                                <li key={key}>
+                                  {key}: {value}
+                                </li>
+                              ))}
                           </li>
                         </ul>
                       </div>

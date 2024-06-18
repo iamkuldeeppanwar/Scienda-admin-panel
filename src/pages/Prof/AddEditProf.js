@@ -353,7 +353,7 @@ function AddEditProf() {
               <input
                 type="number"
                 className="border p-0 fw-bold text-center"
-                style={{ color: "var(--primary-color)", width: "2.5rem" }}
+                style={{ color: "var(--primary-color)", width: "4rem" }}
                 value={form?.payPercentage}
                 onChange={handleChange}
                 name="payPercentage"

@@ -233,11 +233,14 @@ export const apiSlice = createApi({
       }),
     }),
     updateProfById: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `/admin/update-subadmin-profile/${id}`,
-        method: "PATCH",
-        body: data,
-      }),
+      query: ({ id, data }) => {
+        console.log(data);
+        return {
+          url: `/admin/update-subadmin-profile/${id}`,
+          method: "PATCH",
+          body: data,
+        };
+      },
     }),
 
     addProfBankDetails: builder.mutation({

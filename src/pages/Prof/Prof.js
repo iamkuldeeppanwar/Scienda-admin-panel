@@ -84,6 +84,8 @@ export default function Prof() {
     "Actions",
   ];
 
+  console.log(profs);
+
   return (
     <MotionDiv>
       {error ? (
