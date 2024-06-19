@@ -48,7 +48,7 @@ function ViewPayment() {
         <Col lg={4}>
           <p className="my-3">
             <span className="fw-bold">Domain Selected:</span>{" "}
-            {user.domain && user.domain?.domain_name}
+            {user?.domain && user.domain?.domain_name}
           </p>
           <p className="my-3">
             <span className="fw-bold">Prof Name:</span>{" "}
@@ -60,7 +60,7 @@ function ViewPayment() {
           </p>
           <p className="my-3">
             <span className="fw-bold">Area Of Speciality:</span>{" "}
-            {user.subdomain && user.subdomain.sub_domain_name}
+            {user?.subdomain && user.subdomain?.sub_domain_name}
           </p>
         </Col>
         <Col lg={4}>

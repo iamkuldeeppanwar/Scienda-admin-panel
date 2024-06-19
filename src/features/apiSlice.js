@@ -234,7 +234,7 @@ export const apiSlice = createApi({
     }),
     updateProfById: builder.mutation({
       query: ({ id, data }) => {
-        console.log(data);
+        // console.log(data);
         return {
           url: `/admin/update-subadmin-profile/${id}`,
           method: "PATCH",
@@ -331,6 +331,19 @@ export const apiSlice = createApi({
         method: "GET",
       }),
     }),
+    viewModuleReportStatics: builder.mutation({
+      query: (query) => ({
+        url: `admin/get-all-transactions?subdomain=${query}`,
+        method: "GET",
+      }),
+    }),
+
+    getReportGraphStatics: builder.mutation({
+      query: () => ({
+        url: `/admin/get-users-graph-data`,
+        method: "GET",
+      }),
+    }),
 
     //--User apis----
     getUsers: builder.mutation({
@@ -421,4 +434,6 @@ export const {
   useForgetPasswordMutation,
   useNewPasswordMutation,
   useSubmitOTPMutation,
+  useGetReportGraphStaticsMutation,
+  useViewModuleReportStaticsMutation,
 } = apiSlice;

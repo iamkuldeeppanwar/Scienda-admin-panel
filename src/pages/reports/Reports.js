@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { MotionDiv } from "../../components";
 import { Card, CardBody, Col, Container, Row, Spinner } from "react-bootstrap";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { useGetReportStaticsMutation } from "../../features/apiSlice";
+import {
+  useGetReportGraphStaticsMutation,
+  useGetReportStaticsMutation,
+} from "../../features/apiSlice";
 import { getError } from "../../utils/error";
 import { GoArrowRight } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
@@ -10,11 +12,14 @@ import { BarChart } from "@mui/x-charts";
 
 function Reports() {
   const [getReportStatics, { isLoading }] = useGetReportStaticsMutation();
+  const [getReportGraphStatics] = useGetReportGraphStaticsMutation();
   const [statics, setStatics] = useState("");
+  const [graph, setGraph] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchStaticsData();
+    fetchGraphStaticsData();
   }, []);
 
   const fetchStaticsData = async () => {
@@ -26,22 +31,31 @@ function Reports() {
     }
   };
 
-  console.log(statics);
+  const fetchGraphStaticsData = async () => {
+    try {
+      const { data } = await getReportGraphStatics();
+      setGraph(data?.data);
+    } catch (error) {
+      getError(error);
+    }
+  };
 
-  const dataset = [
-    {
-      count: 1,
-      month: "Jan",
-    },
-    {
-      count: 2,
-      month: "Feb",
-    },
-    {
-      count: 3,
-      month: "Mar",
-    },
-  ];
+  // console.log(statics);
+
+  // const dataset = [
+  //   {
+  //     count: 1,
+  //     month: "Jan",
+  //   },
+  //   {
+  //     count: 2,
+  //     month: "Feb",
+  //   },
+  //   {
+  //     count: 3,
+  //     month: "Mar",
+  //   },
+  // ];
 
   return (
     <MotionDiv>
@@ -56,7 +70,7 @@ function Reports() {
         </div>
         <Row>
           <Col>
-            <Card className="mb-3 card_shadow">
+            <Card className="mb-3 shadow border-0">
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -91,7 +105,7 @@ function Reports() {
               </CardBody>
             </Card>
 
-            <Card className="card_shadow">
+            <Card className="shadow border-0">
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -128,7 +142,7 @@ function Reports() {
           </Col>
 
           <Col>
-            <Card className="mb-3 card_shadow" style={{ height: "100%" }}>
+            <Card className="mb-3 shadow border-0" style={{ height: "100%" }}>
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -168,7 +182,7 @@ function Reports() {
                     </div>
                     <BarChart
                       sx={{ marginLeft: "-50px" }}
-                      dataset={dataset}
+                      dataset={graph}
                       xAxis={[{ scaleType: "band", dataKey: "month" }]}
                       series={[{ dataKey: "count" }]}
                       // xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
@@ -178,71 +192,14 @@ function Reports() {
                     />
                   </Col>
                 </Row>
-
-                {/* <Row>
-                  <Col>
-                    {!isLoading ? (
-                      <div
-                        style={{
-                          fontWeight: 600,
-                          fontSize: "33px",
-                        }}
-                      >
-                        {statics.totalNumberOfUsers &&
-                          statics.totalNumberOfUsers}
-                      </div>
-                    ) : (
-                      <Spinner size="sm" />
-                    )}
-                  </Col>
-                </Row> */}
               </CardBody>
             </Card>
           </Col>
         </Row>
 
         <Row className="mt-3">
-          <Col>
-            <Card className="mb-3 card_shadow">
-              <CardBody>
-                <Row>
-                  <Col>
-                    <div
-                      style={{
-                        fontWeight: 500,
-                        fontSize: "13px",
-                      }}
-                    >
-                      Newly Added Users
-                    </div>
-                  </Col>
-                  <Col className="text-end">
-                    <BsThreeDotsVertical className="mb-1" size={"0.9rem"} />{" "}
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col>
-                    {!isLoading ? (
-                      <div
-                        style={{
-                          fontWeight: 600,
-                          fontSize: "33px",
-                        }}
-                      >
-                        2240
-                      </div>
-                    ) : (
-                      <Spinner size="sm" />
-                    )}
-                  </Col>
-                </Row>
-              </CardBody>
-            </Card>
-          </Col>
-
-          <Col>
-            <Card className="mb-3 card_shadow">
+          <Col md={6}>
+            <Card className="mb-3 shadow border-0">
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -254,9 +211,6 @@ function Reports() {
                     >
                       Number of Tests Completed
                     </div>
-                  </Col>
-                  <Col className="text-end">
-                    <BsThreeDotsVertical className="mb-1" size={"0.9rem"} />{" "}
                   </Col>
                 </Row>
 
@@ -292,7 +246,7 @@ function Reports() {
             >
               Payments Received:
             </div>
-            <Card className="mb-3 w-75 card_shadow">
+            <Card className="mb-3 w-75 shadow border-0">
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -304,9 +258,6 @@ function Reports() {
                     >
                       Total Amount Recieved
                     </div>
-                  </Col>
-                  <Col className="text-end">
-                    <BsThreeDotsVertical className="mb-1" size={"0.9rem"} />{" "}
                   </Col>
                 </Row>
 
@@ -333,7 +284,7 @@ function Reports() {
           </Col>
 
           <Col>
-            <Card className="mb-3 card_shadow" style={{ height: "100%" }}>
+            <Card className="mb-3 shadow border-0" style={{ height: "100%" }}>
               <CardBody>
                 <Row>
                   <Col style={{ color: "#475467" }}>
@@ -372,20 +323,15 @@ function Reports() {
                           fontSize: "33px",
                         }}
                       >
-                        <ul>
-                          <li>
-                            {/* {statics.areaWiseAmountReceived &&
-                              statics.areaWiseAmountReceived
-                                .MechanicalEngineering} */}
-                            {statics.areaWiseAmountReceived &&
-                              Object.entries(
-                                statics.areaWiseAmountReceived
-                              ).map(([key, value]) => (
-                                <li key={key}>
-                                  {key}: {value}
+                        <ul className="d-flex gap-5 flex-wrap">
+                          {statics?.areaWiseAmountReceived &&
+                            Object.entries(statics.areaWiseAmountReceived)
+                              .slice(0, 4)
+                              .map(([key, value]) => (
+                                <li style={{ fontSize: "14px" }} key={key}>
+                                  {key}: <br />£ {value}
                                 </li>
                               ))}
-                          </li>
                         </ul>
                       </div>
                     ) : (
